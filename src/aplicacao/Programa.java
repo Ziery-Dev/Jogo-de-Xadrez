@@ -1,13 +1,15 @@
 package aplicacao;
 
-import boardGame.Board;
+import chess.ChessMatch;
 
 public class Programa {
 
 	public static void main(String[] args) {
 		
-		Board board = new Board(2, 5);
-
+		ChessMatch chessMatch = new ChessMatch();
+		
+		//função para imprimir as peças da partida
+		UI.printBoard(chessMatch.getPieces());
 	}
 
 }
