@@ -51,6 +51,11 @@ public class Board {
 	}
 	
 	
+	//responsável por colocar a peça na posição especificado do tabuleiro
+	public void placePiece(Piece piece, Position position) {
+		pieces[position.getRow()][position.getColumn()] = piece;
+		piece.position = position;
+	}
 	
 
 }
