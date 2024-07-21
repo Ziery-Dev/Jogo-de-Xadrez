@@ -1,7 +1,10 @@
 package aplicacao;
 
+import java.util.Arrays;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import chess.ChessMatch;
 import chess.ChessPiece;
@@ -51,8 +54,10 @@ public class UI {
 	}
 	
 	//Método que imprime a partida e não somente o tabuleiro
-	public static void printMatch (ChessMatch chessMatch) {
+	public static void printMatch (ChessMatch chessMatch, List<ChessPiece> captured) {
 		printBoard(chessMatch.getPieces());
+		System.out.println();
+		printCapturedPieces(captured);
 		System.out.println();
 		System.out.println("Turno: "+ chessMatch.getTurn());
 		System.out.println("Aguardando jogador: " + chessMatch.getCurrentPlayer());
@@ -107,5 +112,22 @@ public class UI {
             }
         }
         System.out.print(" ");
+	}
+	
+	//manipulaçao de peças capturadas
+		//método de imprimir peças capturadas
+	private static void printCapturedPieces(List<ChessPiece> captured) {
+		List<ChessPiece> white = captured.stream().filter(x -> x.getColor() == Color.WHITE).collect(Collectors.toList()); //filtragem pegando somente as peças brancas
+		List<ChessPiece> black = captured.stream().filter(x -> x.getColor() == Color.BLACK).collect(Collectors.toList()); //filtragem pegando somente as peças brancas
+		System.out.println("Peças capturadas: ");
+		System.out.println("Brancas: ");
+		System.out.println(ANSI_WHITE);
+		System.out.println(Arrays.toString(white.toArray())); //macete para imprimir uma lista no Java
+		System.err.println(ANSI_RESET);
+		System.out.println("Pretas: ");
+		System.out.println(ANSI_YELLOW);
+		System.out.println(Arrays.toString(black.toArray())); //macete para imprimir uma lista no Java
+		System.err.println(ANSI_RESET);
+		
 	}
 }
