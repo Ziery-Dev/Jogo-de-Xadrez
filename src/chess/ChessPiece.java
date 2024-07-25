@@ -17,6 +17,12 @@ public abstract class ChessPiece extends Piece {
 		return color;
 	}
 	
+	//retornar a posição da peça
+	public ChessPosition getChessPosition() {
+		return ChessPosition.fromPosition(position); //convertendo a posição para ChessPosition
+		
+	}
+	
 	//saber se tem uma peça adversária numa determinada posição
 	protected boolean isThereOpponentPiece(Position position) {
 		ChessPiece p = (ChessPiece)getBoard().piece(position);
